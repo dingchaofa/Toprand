@@ -133,15 +133,16 @@ section.contain {
     }
 }
 .top_btn {
-    /* float: right; */
+    margin-top: 18px;
     text-align: right;
 }
 .top_btn span {
     border: 1px solid white;
     color: white;
-    padding: 6px 18px;
+    padding: 4px 18px;
     border-radius: 30px;
     margin-right: 12px;
+    font-weight: 100;
 }
 .contain ul {
     position: absolute;
