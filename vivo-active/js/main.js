@@ -81,7 +81,7 @@
             return
         }
         some_id.addEventListener('complete',function(some_id){
-            console.log(some_id,'some_id')
+            //console.log(some_id,'some_id')
         })
     }
 
@@ -163,8 +163,8 @@
     //可以用来显示加载进度
     loader.addProgressListener(function(e){
         var percent = Math.round((e.completedCount / e.totalCount) * 100)
-        console.log(percent + "  " + e.resource.getName(),"percent"); 
-        console.log(e,'eeeeeeeeeeeeee')
+        //console.log(percent + "  " + e.resource.getName(),"percent"); 
+        //console.log(e,'eeeeeeeeeeeeee')
     })
 
     //加载完成
@@ -210,7 +210,82 @@
             },500)
         },time)
     }
+
     //点击“马上抢X9”按钮，进入游戏界面 game_stage
+    $a('img.img03').addEventListener('touchstart',function(){
+        $a('section.contain').classList.add('fadeOut')
+        $a('game_stage').style.display = 'block'
+        $a('game_stage').classList.add('fadeIn')
+        setTimeout(function(){
+            $a('section.contain').style.display = 'none'
+        },500)
+
+        
+    })
+
+    //获取品目·屏幕的宽高
+    var screen_w = window.innerWidth,
+        screen_h = window.innerHeight
+    var canvas = document.getElementById('canvas')
+    canvas.width = screen_w
+    canvas.height = screen_h
+    //创建舞台
+    var stage = new createjs.Stage('canvas')
+    createjs.Touch.enable(stage) //兼容移动端，可获取屏幕坐标
+
+    //舞台背景
+    var stage_bg = new createjs.Bitmap('images/img-21.jpg')
+    stage_bg.x = 0
+    stage_bg.y = 0
+    stage.addChild(stage_bg)
+
+    //雨容器
+    var rain_container = new createjs.Container()
+    rain_container.x = 0
+    rain_container.y = 0
+    stage.addChild(rain_container)
+
+    //滑块
+    var slide_block = new createjs.Container()
+    slide_block.x = 0
+    slide_block.y = 0
+    stage.addChild(slide_block)
+
+    //红包容器
+    var red_envelope = new createjs.Container()
+    red_envelope.x = 0
+    red_envelope.y = 0
+    stage.addChild(red_envelope)
+
+    //游戏倒计时容器
+    var game_countDown =  new createjs.Container()
+    game_countDown.x = 0
+    game_countDown.y = 0
+    stage.addChild(game_countDown)
+
+    //手势提示容器
+    var gesture_container = new createjs.Container()
+    gesture_container.x = 0
+    gesture_container.y = 0
+    stage.addChild(gesture_container)
+
+    //创建提示动画
+    //创建手势
+    var gesture_animate = new createjs.Bitmap('images/hand.png')
+    gesture_animate.x = screen_w / 2 - 83 + 50 //50是让手右移一点 //83是图片的宽的一半 //gesture_animate.image.width可获取图片的宽高，但是由于立即执行，所以这个执行时获取的是0
+    //console.log(gesture_animate,'gesture_animate')
+    gesture_animate.y = screen_h - 200
+    gesture_animate.scaleX = gesture_animate.scaleY = 0.6
+    gesture_container.addChild(gesture_animate)
+
+    //创建 小v
+    var v_cartoon = new createjs.Bitmap('images/img-11.png')
+    v_cartoon.x = screen_w /2 -70 //70是小v的宽度
+    v_cartoon.y = screen_h / 2 - 200
+    v_cartoon.addChild(gesture_container)
+
+
+
 
 
     function $a(id){
