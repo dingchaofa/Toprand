@@ -154,9 +154,10 @@ section.contain {
 }
 img.img52 {
     width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 5%;
+    transform: translateY(0px); 
     bottom: 16%;
+    opacity: 0;
 }
 img.img53 {
     bottom: 90%;
@@ -257,18 +258,40 @@ img.img51-6 {
     width: 60px;
 }
 img.img51-7 {
-    bottom: 9%;
+    bottom: 6%;
     right: 10%;
     z-index: 10;
 }
+img.img03 {
+    width: 80%;
+    bottom: 8%;
+    z-index: 30;
+    /*transform: translateY(500px);*/
+    opacity: 0;
+    left: 10%;
+}
+img.img40 {
+    width: 80%;
+    top: -61%;
+    z-index: 30;
+    transform: translateY(500px);
+    opacity: 0;
+    left: 10%;
+}
 .fail-img1 {
-    animation: fail-img 1s ease-in-out forwards;
+    animation: fail-img 1s ease-out forwards;
 }
 .fail-img2 {
-    animation: fail-img .8s ease-in-out forwards;
+    animation: fail-img .8s ease-out forwards;
 }
 .fail-img3 {
-    animation: fail-img .6s ease-in-out forwards;
+    animation: fail-img .6s ease-out forwards;
+}
+.up-img4 {
+    animation: up-img .6s ease-out forwards;
+}
+.up-img5 {
+    animation: up-img 1s ease-out forwards;
 }
 @keyframes fail-img {
     from {
@@ -278,5 +301,15 @@ img.img51-7 {
     to {
         opacity: 1;
         transform: translateY(500px);
+    }
+}
+@keyframes up-img {
+    from {
+        opacity: 0;
+        transform: translateY(400px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
     }
 }

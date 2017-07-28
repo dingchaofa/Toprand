@@ -182,7 +182,7 @@
     //加载开始
     loader.start()
 
-    var img_arr = ['img.img53','img.img54','img.img55','img.img56','img.img62','img.img63','img.img64']
+    var fallImg_arr = ['img.img53','img.img54','img.img62','img.img55','img.img56','img.img63','img.img64','img.img40']
     //设置开始加载时间
     function fallEnter(time){
         setTimeout(function(){
@@ -193,21 +193,24 @@
                 clearInterval(loadingTimer)
                 turn_img.style.display = 'none'
 
-                // img_arr.forEach(function(ele){
+                // fallImg_arr.forEach(function(ele){
                 //     $a(ele).classList.add('fail-img')
                 // })
-                for(var i=0;i<img_arr.length;i++){
-                    if(i<2){
-                        $a(img_arr[i]).classList.add('fail-img1')//加载不同速度的下落动画
-                    } else if(2<=i && i<4){
-                        $a(img_arr[i]).classList.add('fail-img2')
+                for(var i=0;i<fallImg_arr.length;i++){
+                    if(i<3){
+                        $a(fallImg_arr[i]).classList.add('fail-img1')//加载不同速度的下落动画
+                    } else if(3<=i && i<6){
+                        $a(fallImg_arr[i]).classList.add('fail-img2')
                     }else {
-                        $a(img_arr[i]).classList.add('fail-img3')
+                        $a(fallImg_arr[i]).classList.add('fail-img3')
                     }
                 }
+                $a('img.img52').classList.add('up-img4')
+                $a('img.img03').classList.add('up-img5')
             },500)
         },time)
     }
+    //点击“马上抢X9”按钮，进入游戏界面 game_stage
 
 
     function $a(id){
