@@ -239,11 +239,6 @@
     stage_bg.y = 0
     stage.addChild(stage_bg)
 
-    //雨容器
-    var rain_container = new createjs.Container()
-    rain_container.x = 0
-    rain_container.y = 0
-    stage.addChild(rain_container)
 
     //滑块
     var slide_block = new createjs.Container()
@@ -278,15 +273,135 @@
     gesture_animate.scaleX = gesture_animate.scaleY = 0.6
     gesture_container.addChild(gesture_animate)
 
-    //创建 小v
+    //创建 小v 圆眼
     var v_cartoon = new createjs.Bitmap('images/img-11.png')
     v_cartoon.x = screen_w /2 -70 //70是小v的宽度
     v_cartoon.y = screen_h / 2 - 200
     v_cartoon.addChild(gesture_container)
 
+    //创建 小v 眨眼
+    var c_cartoon = new createjs.Bitmap('images/img-43.png')
+    c_cartoon.x = screen_w /2 -70 //70是小v的宽度
+    c_cartoon.y = screen_h / 2 - 200
+    c_cartoon.addChild(gesture_container)
+
+    //创建滑动小v监听事件
+    var startX,moveX //开始位置
+    v_cartoon.on('mousedown',function(e){
+        startX = e.stageX - c_cartoon.x
+    })
+    v_cartoon.on('pressmove',function(e){
+        moveX = e.stageX - startX
+        if(moveX >= 0 &&　moveX <= screen_w - 140){
+            if(isSlide){
+                this.x = moveX
+                c_cartoon.x = moveX
+            }
+        }
+    })
+
+    //创建提示动画函数
+    function hintAnimate(){
+        var tweenV = createjs.Tween.get(v_cartoon,{
+            loop: 0
+        })
+        .to({
+            x:screen_w /2 -83 +200
+        },400,createjs.Ease.linear)
+        .to({
+            x: screen_w /2 - 83 - 200
+        },800,Ease.linear)
+        .to({
+            x: screen_w /2 - 83 + 200
+        },800,Ease.linear)
+        .to({
+            x: screen_w /2 - 83 - 200
+        },800,Ease.linear)
+        .to({
+            x: screen_w /2 - 83
+        },400,Ease.linear)
+
+        var tweenG = createjs.Tween.get(gesture_animate,{
+            loop: 0
+        })
+        .to({
+            x:screen_w /2 -83 + 200 + 50
+        },400,createjs.Ease.linear)
+        .to({
+            x: screen_w /2 - 83 -200 + 50
+        },800,Ease.linear)
+        .to({
+            x: screen_w /2 - 83 +200 + 50
+        },800,Ease.linear)
+        .to({
+            x: screen_w /2 - 83 -200 + 50
+        },800,Ease.linear)
+        .to({
+            x: screen_w /2 - 83 + 50,
+            alpha: 0
+        },400,Ease.linear).call(function(){
+            //队列操作调用指定的函数.
+        })
+    }
+    hintAnimate()
+
+    //游戏倒计时计数函数
+    var game_time //设置游戏倒计时定时器，
+    function playGame_countDown(){
+        var second = 8
+        game_time = setInterval(function(){
+            if(second<=0){
+                clearInterval(game_time)
+                if(receive_num<8){ //接到的红包小于8个，则未获得奖品，当等于8时就停止接红包了，要开始抽奖了
+                    unwinPrize()
+                    isSlide = false
+                }
+            }else{
+                second --
+            }
+            $a('.count-down').textContent = second + 's'
+        },1000)
+    }
+
+    //创建红包下落动画函数
+    function redPacketFallAniamte(){
+        for(var i=0; i<redpacket_num;i++){
+            var r = new createjs.Bitmap('images/img-27.png')
+            r.x = Math.random()*screen_w + 30
+            r.y = -110 -i*300
+            red_envelope.addChild(r)
+            var r_speed = Math.random()*50+20
+            redpacket_speed.push(r_speed)
+        }
+    }
+
+    //雨容器
+    var rain_container = new createjs.Container()
+    rain_container.x = 0
+    rain_container.y = 0
+    stage.addChild(rain_container)
+
+    //创建游戏背景下雨的效果
+    var rainImg_arr = ["images/1.png", "images/2.png", "images/3.png", "images/4.png"]
+    function rainBg(){
+        for(var i=0;i<50;i++){
+            var some_rian = parseInt(Math.random()*rainImg_arr.length),
+                this_rain = new createjs.Bitmap(rainImg_arr[some_rian])
+            this_rain.x = Math.random()*550+30
+            this_rain.y = -110- i*300
+            rain_container.addChild(this_rain)
+
+            var this_rain_speed = Math.random()*20+20 //雨的落速应该是差不多的
+            rain_speed
+        }
+    }
 
 
+    createjs.Ticker.addEventListener('tick',handleTick)
+    function handleTick(){
+        stage.update()
 
+    }
 
     function $a(id){
         return document.querySelector(id)
