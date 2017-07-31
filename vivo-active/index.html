@@ -12,7 +12,7 @@
     <!--加载进入页面音乐-->
     <audio src="music/game-fast.mp3" id="game_fast" loop autoplay></audio>
     <!--加载动画-->
-<section class="turn_img">
+<section class="turn_img" style="display:none">
     <ul>
         <li class="first"></li>
         <li class="second"></li>
@@ -31,11 +31,11 @@
     </div>
 </section>
 <section class="contain">
-    <div class="top_btn">
+    <div class="top_btn"  style="display:none">
         <span>幸运榜单</span>
         <span>活动锦囊</span>
     </div>
-    <ul>
+    <ul  style="display:none">
         <li><img class="img03" src="images/img-03.png" alt=""></li>
         <li><img class="img40" src="images/img-40.png" alt=""></li>
         <li><img class="img51-1" src="images/img-51.png" alt=""></li>
@@ -58,12 +58,65 @@
         <li><img class="img64" src="images/img-64.png" alt=""></li>
         <li><img class="img51-7" src="images/img-51.png" alt=""></li>
     </ul>
+    <div class="dialog">
+        <!--幸运榜单弹窗-->
+        <div class="luck">
+            <div class="topbar">
+                <img src="./images/img-28.png" alt="">
+                <span>别羡慕了，快去抢X9！</span>
+            </div>
+            <div class="show-winner">
+                <div>
+                    <img src="./images/img-24.png" alt="">
+                    <span>幸运榜单</span>
+                    <span>已有<b>475252045</b>人中奖</span>
+                </div>
+                <ul>
+                    <li>
+                        <span>kevll</span>
+                        <span>奖品x9 vivo手机</span>
+                        <span>186****6688</span>
+                    </li>
+                    <li>
+                        <span>kevll</span>
+                        <span>奖品vivo移动电源</span>
+                        <span>186****6688</span>
+                    </li>
+                    <li>
+                        <span>发布达</span>
+                        <span>奖品x9 vivo手机</span>
+                        <span>186****6688</span>
+                    </li>
+                    <li>
+                        <span>kevll</span>
+                        <span>奖品x9 vivo手机</span>
+                        <span>186****6688</span>
+                    </li>
+                    <li>
+                        <span>发布达</span>
+                        <span>奖品vivo移动电源</span>
+                        <span>186****6688</span>
+                    </li>
+                    <li><span>阿道夫</span><span>获得88元红包</span></li>
+                    <li><span>发布达</span><span>获得88元红包</span></li>
+                    <li><span>阿道夫</span><span>获得88元红包</span></li>
+                </ul>
+            </div>
+            <div class="close-dialog"></div>
+        </div>
+        <!--活动锦囊弹窗-->
+        <div class="tutorial"></div>
+        <!--获得奖品弹窗-->
+        <div class="winPrize"></div>
+        <!--未获得奖品弹窗-->
+        <div class="unwinPrize"></div>
+    </div>
 </section>
-<section class="game_stage">
+<section class="game_stage"  style="display:none">
     <canvas id="canvas"></canvas>
     <div>
         <!--显示接到的红包数-->
-        <span class="red-count">×1</span>
+        <span class="red-count">×0</span>
         <!--显示游戏倒计时时间-->
         <span class="count-down">8s</span>
     </div>

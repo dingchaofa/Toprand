@@ -11,6 +11,29 @@ body {
 ul {
     list-style: none;
 }
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 2px;
+    height: 16px;
+    background-color: #fff;
+}
+ 
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+ 
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ccc;
+}
 .turn_img {
     perspective: 1000px;
     position: absolute;
@@ -118,8 +141,8 @@ section.contain {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    opacity: 0;
-    display: none;
+    /*opacity: 0;
+    display: none;*/
 }
 .fadeIn {
     animation: fadeIn .5s ease forwards;
@@ -144,7 +167,7 @@ section.contain {
     margin-right: 12px;
     font-weight: 100;
 }
-.contain ul {
+.contain .top_btn + ul {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -312,4 +335,123 @@ img.img40 {
         opacity: 1;
         transform: translateY(0)
     }
+}
+/* 所有弹窗样式 */
+/* 幸运榜单 */
+.dialog {
+    position: fixed;
+    width: 86%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 12%;
+}
+.luck .topbar {
+    background: linear-gradient(to right, #2D9FFF, #2569FF);
+    border-radius: 6px 6px 0 0;
+    height: 150px;
+    padding-top: 10px;
+}
+.luck .topbar img {
+    width: 30%;
+    vertical-align: middle;
+    margin: 10px;
+}
+.luck .topbar span {
+    color: white;
+    font-size: 20px;
+}
+.luck .show-winner {
+    background: white;
+    border-radius: 0 0 6px 6px;
+    height: 316px;
+}
+.luck .show-winner div img {
+    vertical-align: middle;
+    margin-left: 10px;
+    width: 20px;
+}
+.luck .show-winner div span {
+    line-height: 50px;
+    font-size: 14px;
+    margin-left: 5px;
+    color: #9A9A9A;
+}
+.luck .show-winner div span:nth-of-type(1) {
+    color: #2d9dff;
+}
+.luck .show-winner div span:nth-of-type(2) {
+    float: right;
+    margin-right: 10px;
+}
+.luck .show-winner div span>b {
+    color: #2d9dff;
+    font-weight: 400;
+}
+.luck .show-winner ul {
+    font-size: 13px;
+    padding: 3%;
+    width: 100%;
+    height: 260px;
+    overflow-y: scroll;
+}
+.luck .show-winner ul li {
+    /* display: flex; */
+    border-top: 1px solid #f1f1f1;
+    /* text-align: center; */
+}
+.luck .show-winner ul span {
+    line-height: 37px;
+    display: inline-block;
+    white-space: nowrap;
+}
+.luck .show-winner ul span:nth-child(1) {
+    width: 28%;
+    float: left;
+    color: #5e5e5e;
+    padding-left: 6px;
+}
+.luck .show-winner ul span:nth-child(2) {
+    color: #51a0e3;
+    /* float: left; */
+    /* width: 35%; */
+}
+.luck .show-winner ul span:nth-child(3) {
+    float: right;
+}
+.dialog .luck {
+    display: none;
+    box-shadow: 0 0 0px 1280px rgba(0,0,0, .6);
+}
+.close-dialog {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -14%;
+}
+.close-dialog:before {
+    content: "";
+    width: 1px;
+    height: 30px;
+    background: white;
+    display: block;
+    transform: rotate(45deg);
+    position: relative;
+    left: 18px;
+    top: 5px;
+}
+.close-dialog:after {
+    content: "";
+    width: 1px;
+    height: 30px;
+    background: white;
+    display: block;
+    transform: rotate(-45deg);
+    position: relative;
+    left: 18px;
+    top: -25px;
 }

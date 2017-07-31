@@ -363,7 +363,8 @@
         },1000)
     }
 
-    //创建红包下落动画函数
+    var redpacket_speed = [] //红包下落速度的容器
+    //创建游戏红包函数
     function redPacketFallAniamte(){
         for(var i=0; i<redpacket_num;i++){
             var r = new createjs.Bitmap('images/img-27.png')
@@ -374,6 +375,7 @@
             redpacket_speed.push(r_speed)
         }
     }
+    redPacketFallAniamte()
 
     //雨容器
     var rain_container = new createjs.Container()
@@ -381,7 +383,9 @@
     rain_container.y = 0
     stage.addChild(rain_container)
 
-    //创建游戏背景下雨的效果
+    var rain_speed = [],  //雨下落速度的容器
+        rain_startY = [] //存放雨开始的位置
+    //创建游戏背景雨
     var rainImg_arr = ["images/1.png", "images/2.png", "images/3.png", "images/4.png"]
     function rainBg(){
         for(var i=0;i<50;i++){
@@ -391,17 +395,65 @@
             this_rain.y = -110- i*300
             rain_container.addChild(this_rain)
 
+            rain_startY.push(this_rain.y)
             var this_rain_speed = Math.random()*20+20 //雨的落速应该是差不多的
-            rain_speed
+            rain_speed.push(this_rain_speed)
         }
     }
+    rainBg()
+
+
+    //接红包函数
+    function receiveRedpacket(){
+        if(isCountdown){
+            for(var i=0; i<red_envelope.children.length;i++){
+                if(red_envelope.children[i]>screen_h){
+                    red_envelope.removeChild(red_envelope.children[i])
+                    redpacket_speed.splice(i,1)
+                }else{
+                    red_envelope.children[i].y += redpacket_speed[i]
+                }
+                if(red_envelope.children[i].y > v_cartoon.y && red_envelope.children[i].y < v_cartoon.y+ 200 /3 && red_envelope.children[i].x > v_cartoon.x && red_envelope[i].x < v_cartoon.x + 140 - 52){
+                    receive_num ++
+                    $a('red-count').textContent = '×' + receive_num
+                    c_cartoon.alpha = 1
+                    v_cartoon.alpha = 0
+                    setTimeout(function(){
+                        c_cartoon.alpha = 0
+                        v_cartoon.alpha = 1
+                    },300)
+                    if(receive_num === 8){
+                        isCountdown = false
+                        clearInterval(game_time)
+                        winPrize()
+                    }
+                    redpacket_speed.splice(i,1)
+                    red_envelope.removeChild(red_envelope.children[i])
+                }
+            }
+        }
+        for(var i=0;i<rain_container.children.length;i++){
+            if(rain_container.children[i].y > screen_h){
+                rain_container.children[i].y = rain_startY[i]
+                rain_container.children[i].alpha = 1
+            }else{
+                rain_container.children[i].y += rain_speed[i] //下雨
+            }
+        }
+    }
+
+
 
 
     createjs.Ticker.addEventListener('tick',handleTick)
     function handleTick(){
         stage.update()
-
+        receiveRedpacket()
     }
+
+    $a('.contain .top_btn span:first-child').addEventListener('touchstart',function(){
+        $a('.dialog .luck').style.display = 'block'
+    })
 
     function $a(id){
         return document.querySelector(id)
