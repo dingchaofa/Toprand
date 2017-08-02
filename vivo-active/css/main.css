@@ -85,7 +85,7 @@ ul {
     filter: blur(5px);
 }
 .fadeOut {
-    animation: fadeOut .8s ease-in-out forwards;
+    animation: fadeOut .5s ease-in-out forwards;
 }
 @keyframes fadeOut {
     from {
@@ -337,18 +337,28 @@ img.img40 {
     }
 }
 /* 所有弹窗样式 */
-/* 幸运榜单 */
+/* 背景阴影 */
+.bg-shadow {
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.6);
+    position: absolute;
+    top: 0;
+    display: none;
+}
 .dialog {
     position: fixed;
     width: 86%;
     left: 50%;
     transform: translateX(-50%);
     top: 12%;
+    height: 70%;
 }
+/* 幸运榜单 */
 .luck .topbar {
     background: linear-gradient(to right, #2D9FFF, #2569FF);
     border-radius: 6px 6px 0 0;
-    height: 150px;
+    height: 30%;
     padding-top: 10px;
 }
 .luck .topbar img {
@@ -363,7 +373,7 @@ img.img40 {
 .luck .show-winner {
     background: white;
     border-radius: 0 0 6px 6px;
-    height: 316px;
+    height: 60%;
 }
 .luck .show-winner div img {
     vertical-align: middle;
@@ -371,7 +381,7 @@ img.img40 {
     width: 20px;
 }
 .luck .show-winner div span {
-    line-height: 50px;
+    line-height: 44px;
     font-size: 14px;
     margin-left: 5px;
     color: #9A9A9A;
@@ -391,7 +401,7 @@ img.img40 {
     font-size: 13px;
     padding: 3%;
     width: 100%;
-    height: 260px;
+    height: 84%;
     overflow-y: scroll;
 }
 .luck .show-winner ul li {
@@ -420,7 +430,7 @@ img.img40 {
 }
 .dialog .luck {
     display: none;
-    box-shadow: 0 0 0px 1280px rgba(0,0,0, .6);
+    height: 100%;
 }
 .close-dialog {
     width: 40px;
@@ -431,7 +441,7 @@ img.img40 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -14%;
+    bottom: -2%;
 }
 .close-dialog:before {
     content: "";
@@ -454,4 +464,35 @@ img.img40 {
     position: relative;
     left: 18px;
     top: -25px;
+}
+.dialog .tutorial {
+    text-align: center;
+    height: 100%;
+    display: none;
+}
+.tutorial>h3 {
+    color: white;
+    height: 25%;
+    border-radius: 6px 6px 0 0;
+    background: url(../images/img-05.png) no-repeat;
+    background-size: cover;
+    background-position-y: -11px;
+}
+.tutorial .game_rule {
+    background: white;
+    /* height: 62%; */
+    border-radius: 0 0 6px 6px;
+}
+.tutorial h3 {
+    padding: 10px 0;
+}
+.tutorial .game_rule p {
+    font-size: 14px;
+    color: #666;
+    max-width: 76%;
+    margin: 0 auto;
+    line-height: 24px;
+}
+.tutorial .game_rule p:last-child {
+    padding-bottom: 10px;
 }

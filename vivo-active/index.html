@@ -12,7 +12,7 @@
     <!--加载进入页面音乐-->
     <audio src="music/game-fast.mp3" id="game_fast" loop autoplay></audio>
     <!--加载动画-->
-<section class="turn_img" style="display:none">
+<section class="turn_img">
     <ul>
         <li class="first"></li>
         <li class="second"></li>
@@ -31,11 +31,11 @@
     </div>
 </section>
 <section class="contain">
-    <div class="top_btn"  style="display:none">
+    <div class="top_btn">
         <span>幸运榜单</span>
         <span>活动锦囊</span>
     </div>
-    <ul  style="display:none">
+    <ul>
         <li><img class="img03" src="images/img-03.png" alt=""></li>
         <li><img class="img40" src="images/img-40.png" alt=""></li>
         <li><img class="img51-1" src="images/img-51.png" alt=""></li>
@@ -58,9 +58,10 @@
         <li><img class="img64" src="images/img-64.png" alt=""></li>
         <li><img class="img51-7" src="images/img-51.png" alt=""></li>
     </ul>
+    <div class="bg-shadow">
     <div class="dialog">
         <!--幸运榜单弹窗-->
-        <div class="luck">
+        <div class="luck common-dialog">
             <div class="topbar">
                 <img src="./images/img-28.png" alt="">
                 <span>别羡慕了，快去抢X9！</span>
@@ -105,11 +106,28 @@
             <div class="close-dialog"></div>
         </div>
         <!--活动锦囊弹窗-->
-        <div class="tutorial"></div>
+        <div class="tutorial common-dialog">
+            <h3>活动锦囊</h3>
+            <div class="game_rule">
+                <h3>游戏规则</h3>
+                <p>进入游戏后，按住并移动小v接红包，8秒内接到8个以上红包的用户即可获得抽奖机会</p>
+                <h3>奖项设置</h3>
+                <p>一等奖 vivo X9 手机
+                    <br>
+                二等奖 vivo 移动电源
+                <br>
+                三等奖 现金红包
+                </p>
+                <h3>温馨提示</h3>
+                <p>活动时间为4月26日-5月1日获得一等奖/二等奖的用户将需要提供真实有效的个人信息以便活动方发放奖品。</p>
+            </div>
+            <div class="close-dialog"></div>
+        </div>
         <!--获得奖品弹窗-->
-        <div class="winPrize"></div>
+        <div class="winPrize common-dialog"></div>
         <!--未获得奖品弹窗-->
-        <div class="unwinPrize"></div>
+        <div class="unwinPrize common-dialog"></div>
+        </div>
     </div>
 </section>
 <section class="game_stage"  style="display:none">

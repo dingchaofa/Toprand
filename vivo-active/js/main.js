@@ -1,5 +1,9 @@
 !function(){
     var start_time = Date.now() //开始时间
+    var isCountdown = false  //开始滑动小v接红包条件
+    var receive_num = 0 //接收到的红包的个数
+
+    //第一部分，加载动画
     // loading
     var turn_img = $a('.turn_img')
     var list = $all('.turn_img ul li')
@@ -30,7 +34,8 @@
     window.addEventListener('touchmove',function(e){
         e.preventDefault() //阻止滑动默认事件，防止页面被下拉
     })
-
+    
+    //第二部分，加载动画完成后，执行预进入游戏界面
     //加载音效
     function loadMusic(){
         var music_path = 'music/',
@@ -210,7 +215,7 @@
             },500)
         },time)
     }
-
+    //第三部分
     //点击“马上抢X9”按钮，进入游戏界面 game_stage
     $a('img.img03').addEventListener('touchstart',function(){
         $a('section.contain').classList.add('fadeOut')
@@ -277,13 +282,13 @@
     var v_cartoon = new createjs.Bitmap('images/img-11.png')
     v_cartoon.x = screen_w /2 -70 //70是小v的宽度
     v_cartoon.y = screen_h / 2 - 200
-    v_cartoon.addChild(gesture_container)
+    gesture_container.addChild(v_cartoon)
 
     //创建 小v 眨眼
     var c_cartoon = new createjs.Bitmap('images/img-43.png')
     c_cartoon.x = screen_w /2 -70 //70是小v的宽度
     c_cartoon.y = screen_h / 2 - 200
-    c_cartoon.addChild(gesture_container)
+    gesture_container.addChild(c_cartoon)
 
     //创建滑动小v监听事件
     var startX,moveX //开始位置
@@ -310,16 +315,16 @@
         },400,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 - 200
-        },800,Ease.linear)
+        },800,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 + 200
-        },800,Ease.linear)
+        },800,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 - 200
-        },800,Ease.linear)
+        },800,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83
-        },400,Ease.linear)
+        },400,createjs.Ease.linear)
 
         var tweenG = createjs.Tween.get(gesture_animate,{
             loop: 0
@@ -329,19 +334,21 @@
         },400,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 -200 + 50
-        },800,Ease.linear)
+        },800,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 +200 + 50
-        },800,Ease.linear)
+        },800,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 -200 + 50
-        },800,Ease.linear)
+        },800,createjs.Ease.linear)
         .to({
             x: screen_w /2 - 83 + 50,
             alpha: 0
-        },400,Ease.linear).call(function(){
+        },400,createjs.Ease.linear).call(function(){
             //队列操作调用指定的函数.
         })
+
+        isCountdown = true  //当手势动画完成后，开始接红包
     }
     hintAnimate()
 
@@ -365,6 +372,7 @@
 
     var redpacket_speed = [] //红包下落速度的容器
     //创建游戏红包函数
+    var redpacket_num =50
     function redPacketFallAniamte(){
         for(var i=0; i<redpacket_num;i++){
             var r = new createjs.Bitmap('images/img-27.png')
@@ -413,9 +421,9 @@
                 }else{
                     red_envelope.children[i].y += redpacket_speed[i]
                 }
-                if(red_envelope.children[i].y > v_cartoon.y && red_envelope.children[i].y < v_cartoon.y+ 200 /3 && red_envelope.children[i].x > v_cartoon.x && red_envelope[i].x < v_cartoon.x + 140 - 52){
+                if(red_envelope.children[i].y > v_cartoon.y && red_envelope.children[i].y < v_cartoon.y+ 200 /3 && red_envelope.children[i].x > v_cartoon.x && red_envelope.children[i].x < v_cartoon.x + 140 - 52){
                     receive_num ++
-                    $a('red-count').textContent = '×' + receive_num
+                    $a('.red-count').textContent = '×' + receive_num
                     c_cartoon.alpha = 1
                     v_cartoon.alpha = 0
                     setTimeout(function(){
@@ -451,9 +459,42 @@
         receiveRedpacket()
     }
 
+
+    //弹框
+    var bg_shadow = $a('.bg-shadow')
     $a('.contain .top_btn span:first-child').addEventListener('touchstart',function(){
+        bg_shadow.style.display = 'block'
         $a('.dialog .luck').style.display = 'block'
+        bg_shadow.classList.add('fadeIn')
+        $a('.dialog .luck').classList.add('fadeIn')
     })
+
+    $a('.contain .top_btn span:last-child').addEventListener('touchstart',function(){
+        bg_shadow.style.display = 'block'
+        $a('.dialog .tutorial').style.display = 'block'
+        bg_shadow.classList.add('fadeIn')
+        $a('.dialog .tutorial').classList.add('fadeIn')
+    })
+
+    var all_closeDialog = $all('.close-dialog')
+
+    for(var a=0;a<all_closeDialog.length;a++){
+
+        all_closeDialog[a].addEventListener('touchstart',function(){
+
+            this.parentNode.classList.remove('fadeIn')
+            bg_shadow.parentNode.classList.remove('fadeIn')
+
+            this.parentNode.classList.add('fadeOut')
+            bg_shadow.classList.add('fadeOut')
+            var _this = this
+            setTimeout(function(){
+                _this.parentNode.style.display = 'none'
+                bg_shadow.style.display = 'none'
+            },500)
+
+        })
+    }
 
     function $a(id){
         return document.querySelector(id)
