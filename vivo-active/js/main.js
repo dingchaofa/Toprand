@@ -2,6 +2,7 @@
     var start_time = Date.now() //开始时间
     var isCountdown = false  //开始滑动小v接红包条件
     var receive_num = 0 //接收到的红包的个数
+    var isSlide = false //开始禁止滑动
 
     //第一部分，加载动画
     // loading
@@ -31,9 +32,9 @@
     //     }
     // },100)因为有pxloader的完成加载事件，可以在完成加载时，执行这个功能
 
-    window.addEventListener('touchmove',function(e){
-        e.preventDefault() //阻止滑动默认事件，防止页面被下拉
-    })
+    // window.addEventListener('touchmove',function(e){
+    //     e.preventDefault() //阻止滑动默认事件，防止页面被下拉
+    // })
     
     //第二部分，加载动画完成后，执行预进入游戏界面
     //加载音效
@@ -215,17 +216,19 @@
             },500)
         },time)
     }
+
     //第三部分
     //点击“马上抢X9”按钮，进入游戏界面 game_stage
     $a('img.img03').addEventListener('touchstart',function(){
-        $a('section.contain').classList.add('fadeOut')
-        $a('game_stage').style.display = 'block'
-        $a('game_stage').classList.add('fadeIn')
-        setTimeout(function(){
-            $a('section.contain').style.display = 'none'
-        },500)
+        //$a('section.contain').classList.add('fadeOut') 两个页面间切换，应该是一个立即退出，另一个慢慢出现
+        $a('.game_stage').classList.add('fadeIn')
+        $a('.game_stage').style.display = 'block'
+        $a('section.contain').style.display = 'none'
 
-        
+        setTimeout(function(){
+            hintAnimate()
+            isSlide = true
+        },500)
     })
 
     //获取品目·屏幕的宽高
@@ -242,6 +245,9 @@
     var stage_bg = new createjs.Bitmap('images/img-21.jpg')
     stage_bg.x = 0
     stage_bg.y = 0
+    stage_bg.scaleX = screen_w/640
+    stage_bg.scaleY = screen_h/1029
+    console.log(screen_w/640,'screen_w/640')
     stage.addChild(stage_bg)
 
 
@@ -270,30 +276,39 @@
     stage.addChild(gesture_container)
 
     //创建提示动画
-    //创建手势
-    var gesture_animate = new createjs.Bitmap('images/hand.png')
-    gesture_animate.x = screen_w / 2 - 83 + 50 //50是让手右移一点 //83是图片的宽的一半 //gesture_animate.image.width可获取图片的宽高，但是由于立即执行，所以这个执行时获取的是0
-    //console.log(gesture_animate,'gesture_animate')
-    gesture_animate.y = screen_h - 200
-    gesture_animate.scaleX = gesture_animate.scaleY = 0.6
-    gesture_container.addChild(gesture_animate)
+    
 
     //创建 小v 圆眼
     var v_cartoon = new createjs.Bitmap('images/img-11.png')
-    v_cartoon.x = screen_w /2 -70 //70是小v的宽度
-    v_cartoon.y = screen_h / 2 - 200
+    v_cartoon.x = screen_w/2 -42 //140是小v的宽度，乘缩小比例，就居中了
+    v_cartoon.y = screen_h - 200
+    v_cartoon.scaleX = 0.6
+    v_cartoon.scaleY = 0.6
+    console.log(v_cartoon.x,'v_cartoon.x')
     gesture_container.addChild(v_cartoon)
 
     //创建 小v 眨眼
     var c_cartoon = new createjs.Bitmap('images/img-43.png')
-    c_cartoon.x = screen_w /2 -70 //70是小v的宽度
-    c_cartoon.y = screen_h / 2 - 200
+    c_cartoon.x = screen_w /2 -42 //70是小v的宽度
+    c_cartoon.y = screen_h - 200
+    c_cartoon.scaleX = 0.6
+    c_cartoon.scaleY = 0.6
+    c_cartoon.alpha = 0
+    console.log(c_cartoon.x,'c_cartoon.x')
     gesture_container.addChild(c_cartoon)
+
+    //创建手势
+    var gesture_animate = new createjs.Bitmap('images/hand.png')
+    gesture_animate.x = screen_w / 2 - 50 + 25 //25是让手右移一点 //83是图片的宽的一半 //gesture_animate.image.width可获取图片的宽高，但是由于立即执行，所以这个执行时获取的是0
+    console.log(gesture_animate,'gesture_animate')
+    gesture_animate.y = screen_h - 200+60
+    gesture_animate.scaleX = gesture_animate.scaleY = 0.4
+    gesture_container.addChild(gesture_animate)
 
     //创建滑动小v监听事件
     var startX,moveX //开始位置
     v_cartoon.on('mousedown',function(e){
-        startX = e.stageX - c_cartoon.x
+        startX = e.stageX - v_cartoon.x
     })
     v_cartoon.on('pressmove',function(e){
         moveX = e.stageX - startX
@@ -311,62 +326,70 @@
             loop: 0
         })
         .to({
-            x:screen_w /2 -83 +200
-        },400,createjs.Ease.linear)
+            x:screen_w - 84
+        },500,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 - 200
-        },800,createjs.Ease.linear)
+            x:0
+        },1000,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 + 200
-        },800,createjs.Ease.linear)
+            x: screen_w - 84
+        },1000,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 - 200
-        },800,createjs.Ease.linear)
+            x:0
+        },1000,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83
-        },400,createjs.Ease.linear)
+            x: screen_w /2 - 42
+        },500,createjs.Ease.linear)
 
         var tweenG = createjs.Tween.get(gesture_animate,{
             loop: 0
         })
         .to({
-            x:screen_w /2 -83 + 200 + 50
-        },400,createjs.Ease.linear)
+            x:screen_w - 105+42 //手指指到小v中心，42是小v缩小后的宽的一半
+        },500,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 -200 + 50
-        },800,createjs.Ease.linear)
+            x:40
+        },1000,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 +200 + 50
-        },800,createjs.Ease.linear)
+            x: screen_w - 105+42
+        },1000,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 -200 + 50
-        },800,createjs.Ease.linear)
+            x:40
+        },1000,createjs.Ease.linear)
         .to({
-            x: screen_w /2 - 83 + 50,
+            x: screen_w /2 - 53 + 42,
             alpha: 0
-        },400,createjs.Ease.linear).call(function(){
+        },500,createjs.Ease.linear).call(function(){
             //队列操作调用指定的函数.
+            //console.log(111)
+            isCountdown = true  //当手势动画完成后，开始接红包
+            playGame_countDown()
         })
-
-        isCountdown = true  //当手势动画完成后，开始接红包
+        
     }
-    hintAnimate()
+    //hintAnimate()
 
     //游戏倒计时计数函数
     var game_time //设置游戏倒计时定时器，
     function playGame_countDown(){
         var second = 8
         game_time = setInterval(function(){
-            if(second<=0){
-                clearInterval(game_time)
+
+            if(second===1){
+                console.log(receive_num,'receive_num1')
                 if(receive_num<8){ //接到的红包小于8个，则未获得奖品，当等于8时就停止接红包了，要开始抽奖了
                     unwinPrize()
-                    isSlide = false
+                    console.log(receive_num,'receive_num2')
                 }
+                isSlide = false
+                isCountdown = false
+                clearInterval(game_time)
+                second --
             }else{
                 second --
             }
-            $a('.count-down').textContent = second + 's'
+            console.log(second,'second')
+            $a('.count-down').textContent = second + ' s'
         },1000)
     }
 
@@ -378,6 +401,7 @@
             var r = new createjs.Bitmap('images/img-27.png')
             r.x = Math.random()*screen_w + 30
             r.y = -110 -i*300
+            r.scaleX = r.scaleY = 0.6
             red_envelope.addChild(r)
             var r_speed = Math.random()*50+20
             redpacket_speed.push(r_speed)
@@ -401,6 +425,7 @@
                 this_rain = new createjs.Bitmap(rainImg_arr[some_rian])
             this_rain.x = Math.random()*550+30
             this_rain.y = -110- i*300
+            this_rain.scaleY = 0.6
             rain_container.addChild(this_rain)
 
             rain_startY.push(this_rain.y)
@@ -413,15 +438,18 @@
 
     //接红包函数
     function receiveRedpacket(){
+        
         if(isCountdown){
             for(var i=0; i<red_envelope.children.length;i++){
-                if(red_envelope.children[i]>screen_h){
+                if(red_envelope.children[i].y>screen_h){
                     red_envelope.removeChild(red_envelope.children[i])
                     redpacket_speed.splice(i,1)
                 }else{
                     red_envelope.children[i].y += redpacket_speed[i]
                 }
                 if(red_envelope.children[i].y > v_cartoon.y && red_envelope.children[i].y < v_cartoon.y+ 200 /3 && red_envelope.children[i].x > v_cartoon.x && red_envelope.children[i].x < v_cartoon.x + 140 - 52){
+                    console.log(v_cartoon.x,'v_cartoon.x')
+                    console.log(c_cartoon.x,'c_cartoon.x')
                     receive_num ++
                     $a('.red-count').textContent = '×' + receive_num
                     c_cartoon.alpha = 1
@@ -430,9 +458,11 @@
                         c_cartoon.alpha = 0
                         v_cartoon.alpha = 1
                     },300)
+                    console.log(receive_num,'receive_num')
                     if(receive_num === 8){
                         isCountdown = false
                         clearInterval(game_time)
+                        console.log('winPrize')
                         winPrize()
                     }
                     redpacket_speed.splice(i,1)
@@ -450,8 +480,12 @@
         }
     }
 
-
-
+    function winPrize(){
+        console.log('winPrize()')
+    }
+    function unwinPrize(){
+        console.log('unwinPrize()')
+    }
 
     createjs.Ticker.addEventListener('tick',handleTick)
     function handleTick(){
