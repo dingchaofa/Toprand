@@ -507,7 +507,7 @@ section.game_stage {
 canvas#canvas {
     vertical-align: middle;
 }
-section.game_stage div {
+section.game_stage>div:first-of-type {
     position: absolute;
     top: 0;
     margin-top: 33px;
@@ -518,22 +518,99 @@ section.game_stage div {
 span.red-count {
     border-right: none;
     border-radius: 50px 0 0 50px;
-    background: url(../images/img-27.png) no-repeat;
+    background: url(../images/img-27.png) no-repeat 18px;
     background-size: 20%;
-    background-position-x: 18px;
-    background-position: 18px;
 }
 span.count-down {
     border-radius: 0 50px 50px 0;
-    background: url(../images/img-16.png) no-repeat;
+    background: url(../images/img-16.png) no-repeat 10px;
     background-size: 35%;
-    background-position: 10px;
+}
+/* 未获得红包鼓励文案 */
+.unwin_game {
+    display: none;
 }
 .game_stage span {
     color: white;
     border: 1px solid white;
-    padding: 6px;
-    padding-left: 40px;
     font-size: 16px;
-    padding-right: 10px;
+    padding: 6px 10px 6px 40px;
+}
+section.game_stage .game_dialog {
+    position: fixed;
+    width: 86%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 12%;
+    height: 100%;
+    display: none;
+}
+.game_dialog .topbar {
+    background: url(../images/img-13.png) no-repeat;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+.game_dialog .topbar img {
+    width: 50%;
+    vertical-align: middle;
+    padding: 30px;
+}
+.game_dialog .topbar h3 {
+    display: inline;
+    font-weight: 400;
+}
+.game_dialog p.encourage {
+    padding: 30px 0;
+}
+.game_dialog .topbar+div {
+    background: white;
+    text-align: center;
+    position: relative;
+    border-radius: 0 0 10px 10px;
+}
+.game_dialog p.encourage+img {
+    width: 45%;
+    margin-bottom: 10px;
+}
+.win_game {
+    background: url(../images/img-08.png) no-repeat;
+    height: 65%;
+    background-size: cover;
+    display: none;
+}
+.win_game p {
+    position: absolute;
+    top: 28%;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    /* white-space: nowrap;这三个属性也可以居中不换行 */
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+    color: #fde0b2;
+}
+.win_game img {
+    position: absolute;
+    height: 100%;
+}
+.money {
+    animation: money 1s steps(30,end) 2;
+}
+@keyframes money {
+    from {
+        left: 0;
+    }
+    to {
+        left: -2968%;
+    }
+}
+.win_game>div {
+    /*border: 1px solid;*/
+    position: absolute;
+    width: 27%;
+    height: 13%;
+    overflow: hidden;
+    top: 36%;
+    left: 50%;
+    transform: translateX(-50%);
 }

@@ -284,7 +284,7 @@
     v_cartoon.y = screen_h - 200
     v_cartoon.scaleX = 0.6
     v_cartoon.scaleY = 0.6
-    console.log(v_cartoon.x,'v_cartoon.x')
+    //console.log(v_cartoon.x,'v_cartoon.x')
     gesture_container.addChild(v_cartoon)
 
     //创建 小v 眨眼
@@ -294,13 +294,13 @@
     c_cartoon.scaleX = 0.6
     c_cartoon.scaleY = 0.6
     c_cartoon.alpha = 0
-    console.log(c_cartoon.x,'c_cartoon.x')
+    //console.log(c_cartoon.x,'c_cartoon.x')
     gesture_container.addChild(c_cartoon)
 
     //创建手势
     var gesture_animate = new createjs.Bitmap('images/hand.png')
     gesture_animate.x = screen_w / 2 - 50 + 25 //25是让手右移一点 //83是图片的宽的一半 //gesture_animate.image.width可获取图片的宽高，但是由于立即执行，所以这个执行时获取的是0
-    console.log(gesture_animate,'gesture_animate')
+    //console.log(gesture_animate,'gesture_animate')
     gesture_animate.y = screen_h - 200+60
     gesture_animate.scaleX = gesture_animate.scaleY = 0.4
     gesture_container.addChild(gesture_animate)
@@ -308,12 +308,14 @@
     //创建滑动小v监听事件
     var startX,moveX //开始位置
     v_cartoon.on('mousedown',function(e){
+        console.log(isSlide,'isSlide')
         startX = e.stageX - v_cartoon.x
     })
-    v_cartoon.on('pressmove',function(e){
+
+    v_cartoon.on("pressmove",function(e){
         moveX = e.stageX - startX
-        if(moveX >= 0 &&　moveX <= screen_w - 140){
-            if(isSlide){
+        if (moveX <= screen_w - 84 && moveX >= 0) {
+            if (isSlide) {
                 this.x = moveX
                 c_cartoon.x = moveX
             }
@@ -376,10 +378,10 @@
         game_time = setInterval(function(){
 
             if(second===1){
-                console.log(receive_num,'receive_num1')
+                //console.log(receive_num,'receive_num1')
                 if(receive_num<8){ //接到的红包小于8个，则未获得奖品，当等于8时就停止接红包了，要开始抽奖了
                     unwinPrize()
-                    console.log(receive_num,'receive_num2')
+                    //console.log(receive_num,'receive_num2')
                 }
                 isSlide = false
                 isCountdown = false
@@ -482,9 +484,12 @@
 
     function winPrize(){
         console.log('winPrize()')
+        $a('.win_game').style.display = 'block'
+        $a('.game_dialog').style.display = 'block'
     }
     function unwinPrize(){
         console.log('unwinPrize()')
+        alert('未接收8个红包，无法获得红包。后文由于时间关系，未获得红包的鼓励文案，不再写')
     }
 
     createjs.Ticker.addEventListener('tick',handleTick)
@@ -492,7 +497,18 @@
         stage.update()
         receiveRedpacket()
     }
+    //完成游戏，获得抽奖机会
+    //点击拆，拆开红包,从服务器获取获得的奖品
+    var open_red = $a('.win_game img')
+    open_red.addEventListener('touchstart',function(){
+        var datasrc = open_red.getAttribute('data-src')
 
+        open_red.setAttribute('src',datasrc)
+        open_red.classList.add('money')
+        setTimeout(function(){
+            alert('获得红包，由于时间关系后面的红的红包文案页面不再写')
+        },1300)
+    })
 
     //弹框
     var bg_shadow = $a('.bg-shadow')

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .parent {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border: 1px solid;
+        }
+        img {
+            position: absolute;
+            animation: test 1s steps(30,end) infinite;
+        }
+        @keyframes test {
+            from {
+                left: 0;
+            }
+            to  {
+                left:-4474px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="parent">
+    <img src="vivo-active/images/img-37.png" alt=""/>
+</div>
+</body>
+</html>
