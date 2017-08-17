@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="viewport" content="width=640,user-scalable=no"/>
+    <title>css3实现序列帧动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width:100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        div {
+            width: 75px;
+            height: 128px;
+            border: 1px solid red;
+            /*background: url("images/1.png") no-repeat;*/
+            animation: turn 2s linear;
+            animation-iteration-count: infinite;
+        }
+        @keyframes turn {
+            0% {
+                background: url("images/1.png") no-repeat;
+            }
+            10% {
+                background: url("images/2.png") no-repeat;
+            }
+            20% {
+                background: url("images/3.png") no-repeat;
+            }
+            30% {
+                background: url("images/4.png") no-repeat;
+            }
+            40% {
+                background: url("images/5.png") no-repeat;
+            }
+            50% {
+                background: url("images/6.png") no-repeat;
+            }
+            60% {
+                background: url("images/7.png") no-repeat;
+            }
+            70% {
+                background: url("images/8.png") no-repeat;
+            }
+            80% {
+                background: url("images/9.png") no-repeat;
+            }
+            90% {
+                background: url("images/10.png") no-repeat;
+            }
+            100% {
+                background: url("images/1.png") no-repeat;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <h3>由于没有预加载，所以每请求一个图片就会显示一个图片，所以第一次加载会一闪一闪的，做个预加载</h3>
+</body>
+</html>
