@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
+<!doctype html>
+<html lang="zh-CN">
+<head>
 	<meta charset="UTF-8">
-	<title></title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<meta name="viewport" content="width=640,user-scalable=no"/>
+	<title>css3实现序列帧动画</title>
+	<script src="js/PxLoader-all.min.js"></script>
+	<script src="js/index2.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			width:100vw;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		.keyframe {
+			width: 75px;
+			height: 128px;
+			border: 1px solid red;
+			background: url("images/0.png") no-repeat 0;
+			animation: turn 2s steps(10,end);
+			animation-iteration-count: infinite;
+			display: none;
+		}
+		@keyframes turn {
+			from {
+				background-position-x: 0;
+			}
+			to {
+				background-position-x: -751px;
+			}
+		}
+		h3 {
+			width: 580px;
+			position: absolute;
+			top: 10%;
+			font-size: 26px;
+		}
+	</style>
 </head>
 <body>
+<h3>如果sprite不是很大，就不需要做预加载</h3>
+<div class="keyframe"></div>
+<div class="loading">0%</div>
 
+<script>
+
+//	let  loader = new PxLoader()
+//
+//	let img_src = loader.addImage('images/0.png')
+//	console.log(img_src,'img_src')
+//
+//	let load_progress = document.getElementsByClassName('loading'),
+//	keyframe = document.getElementsByClassName('keyframe')
+//
+//	loader.addCompletionListener(function(e){
+//		keyframe[0].style.display = 'block'
+//		load_progress[0].style.display = 'none'
+//	})
+//
+//	loader.addProgressListener(function(e){
+//		load_progress[0].textContent = (e.completedCount / e.totalCount)*100+'%'
+//		console.log(load_progress[0].textContent,'text')
+//	})
+//	loader.start();
+</script>
 </body>
 </html>
