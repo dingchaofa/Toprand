@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
@@ -19,13 +19,14 @@
             align-items: center;
             flex-direction: column;
         }
-        div {
+        .keyframe {
             width: 75px;
             height: 128px;
             border: 1px solid red;
             /*background: url("images/1.png") no-repeat;*/
             animation: turn 2s linear;
             animation-iteration-count: infinite;
+	        display: none;
         }
         @keyframes turn {
             0% {
@@ -62,10 +63,52 @@
                 background: url("images/1.png") no-repeat;
             }
         }
+        h3 {
+            width: 580px;
+            position: absolute;
+            top: 10%;
+            font-size: 26px;
+        }
     </style>
 </head>
 <body>
-    <div></div>
     <h3>由于没有预加载，所以每请求一个图片就会显示一个图片，所以第一次加载会一闪一闪的，做个预加载</h3>
+    <div class="keyframe"></div>
+    <div class="loading">0%</div>
+    <script src="js/PxLoader-all.min.js"></script>
+    <script>
+	    let img_list = ['./images/1.png','./images/2.png','./images/3.png','./images/4.png','./images/5.png','./images/6.png','./images/7.png','./images/8.png','./images/9.png','./images/10.png']
+
+	    let  loader = new PxLoader()
+	    img_list.forEach(function(ele){
+		    var px_img = new PxLoaderImage(ele)
+		    loader.add(px_img)
+		    //console.log(ele)
+		    //console.log(px_img,'px_img2')
+	    })
+
+	    let load_progress = document.getElementsByClassName('loading'),
+	        keyframe = document.getElementsByClassName('keyframe')
+
+	    loader.addCompletionListener(function(e){
+		    //console.log(e,'comp')
+		    keyframe[0].style.display = 'block'
+		    load_progress[0].style.display = 'none'
+	    })
+
+
+	    //console.log(load_progress,'load_progress')
+	    //console.log(load_progress[0].textContent,'text')
+
+
+	    loader.addProgressListener(function(e){
+		    //console.log(e,'e')
+		    load_progress[0].textContent = (e.completedCount / e.totalCount)*100+'%'
+		    console.log(load_progress[0].textContent,'text')
+	    })
+	    loader.start();
+	    //console.log(loader,'loader')
+
+    </script>
 </body>
 </html>

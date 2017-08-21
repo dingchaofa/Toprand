@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>PxLoader Learn</title>
+    <script src="./js/PxLoader-all.js"></script>
+</head>
+<body>
+<canvas id="first-canvas" width="660" height="280"></canvas>
+<script>
+    var loader = new PxLoader(),
+        bgImg = loader.addImage('./images/headerbg.jpg'),
+        treesImg = loader.addImage('./images/trees.png'),
+        ufoImg = loader.addImage('./images/ufo.png')
+    //console.log(loader)
+
+    loader.addCompletionListener(function(){
+        var canvas = document.getElementById('first-canvas'),
+	    ctx = canvas.getContext('2d')
+
+	    ctx.drawImage(bgImg, 0, 0);
+	    ctx.drawImage(treesImg, 0, 104);
+	    ctx.drawImage(ufoImg, 360, 50);
+    })
+	loader.start()
+</script>
+</body>
+</html>
