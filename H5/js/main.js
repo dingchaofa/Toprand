@@ -11,10 +11,10 @@
   }
 
   var loader = new PxLoader({
-    statusInterval: 20000,
-    loggingDelay: 20 * 1000
+    statusInterval: 200000,
+    loggingDelay: 20 * 10000
   })
-  //console.log(loader)
+  console.log(loader)
   loadImg.forEach(function(ele){
     var pxImg = new PxLoaderImage(ele)
     loader.add(pxImg)
@@ -24,9 +24,11 @@
   function setTime(){
     if(isOver){
       setTimeout(function(){
+        //console.log(loadImg[n])
         var pxImg = new PxLoaderImage(loadImg[n])
         loader.add(pxImg)
-        console.log(loader)
+        console.log(pxImg)
+
 
         n++
         if(n===24){
@@ -35,10 +37,12 @@
         }
         setTime()
       },400)
+      loader.start()
       console.log(n,'n')
     }
   }
   //setTime()
+
 
   var runPlanet = document.getElementsByClassName('run-planet')[0],
       preload = document.getElementsByClassName('preload')[0]
@@ -69,7 +73,7 @@
     var stage = new createjs.Stage('frameCanvas')
     createjs.Touch.enable(stage)
 
-    createjs.Ticker.framerate = 10
+    createjs.Ticker.framerate = 15
     createjs.Ticker.addEventListener('tick',function(){
       stage.update()
     })
