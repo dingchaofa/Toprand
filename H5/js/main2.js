@@ -14,7 +14,7 @@
     statusInterval: 200000,
     loggingDelay: 20 * 10000
   })
-  console.log(loader)
+  //console.log(loader)
   loadImg.forEach(function(ele){
     var pxImg = new PxLoaderImage(ele)
     loader.add(pxImg)
@@ -65,51 +65,39 @@
     var temp = (e.completedCount/e.totalCount)*100,
         ratio = -(36*temp/60)-7 //从开始-7deg转动到结束转动，旋转到67°。
         runPlanet.style.transform = 'translate(650px,-50px) rotateZ('+ratio+'deg)'
-    console.log(ratio)
+    //console.log(ratio)
   })
   loader.start()
 
   //-----------------------------------------播放序列帧
 
   function frameAnimation(){
-    var stage = new createjs.Stage('frameCanvas')
-    createjs.Touch.enable(stage)
 
-    createjs.Ticker.framerate = 15
-    createjs.Ticker.addEventListener('tick',function(){
-      stage.update()
-    })
+    var canvas = document.getElementById('frameCanvas')
+    var ctx = canvas.getContext('2d')
+    var index = 0,
+        totalImg = loadImg.length
 
-
-
-    var totalImg = 24,
-        index = 0
-
-    var imgCt = new createjs.Container()
-    imgCt.x = 0
-    imgCt.y = 0
-    stage.addChild(imgCt)
-
-    function playFrame(i){
-      var bitmap = new createjs.Bitmap(loadImg[i])
-      bitmap.x = 0
-      bitmap.y = 0
-      imgCt.addChild(bitmap)
+    function drawImg(index){
+      ctx.clearRect(0, 0, 640, 1138);
+      var img = new Image()
+      img.src = loadImg[index]
+      ctx.drawImage(img,0,0)
     }
 
-    function setAnimation(){
-      imgCt.removeAllChildren()
-      playFrame(index)
-      index ++
+    var imgId = setInterval(function(){
+        drawImg(index)
+        index ++
 
-      var animId = requestAnimationFrame(setAnimation)
       if(index>=totalImg){
-        window.cancelAnimationFrame(animId)
-        console.log('cancelAnimationFrame')
+        clearInterval(imgId)
+        console.log('clearInterval')
       }
-    }
-    setAnimation()
+    },67) //每秒15帧，很流畅
 
+    function startFrame(){
+      //做个点击按钮，开始播放
+    }
   }
 
 }()
