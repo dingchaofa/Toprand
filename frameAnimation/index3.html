@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<meta name="viewport" content="width=640,user-scalable=no"/>
+	<meta charset="UTF-8">
+	<title>借助createjs的spriteSheet方法做序列帧</title>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+	<script src="js/easeljs-0.8.2.min.js"></script>
+	<script>
+		var canvas = document.getElementById("myCanvas"),
+		    stage = new createjs.Stage(canvas);
+
+		canvas.width = 640
+		canvas.height = 1138
+
+		var data = {
+			images: ['images/0.png'],
+			frames: {
+				width: 75,
+				height:128,
+				count: 10
+			},
+			animations: {
+				run: [0,9]
+			}
+		}
+		var spriteSheet = new createjs.SpriteSheet(data);
+		var animation = new createjs.Sprite(spriteSheet, "run");
+		animation.play();//播放动画
+		stage.addChild(animation);
+
+		createjs.Ticker.addEventListener("tick", tick);
+
+		function tick(event) {
+			stage.update()
+		}
+
+	</script>
+</body>
+</html>
