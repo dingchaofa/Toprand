@@ -4,31 +4,57 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<meta name="viewport" content="width=640, user-scalable=no">
-	<title>欢迎加入到我们的团队</title>
-	<link rel="stylesheet" href="index.css"/>
+	<title>文字响应式布局</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			        box-sizing: border-box;
+		}
+		html,body {
+			height: 100%;
+		}
+		ul {
+			list-style: none;
+		}
+		header {
+			text-align: center;
+			font-size: 40px;
+			margin-top: 40px;
+			color: blueviolet;
+		}
+		.word_ct {
+			position: relative;
+			max-width: 380px;
+			margin: 0 auto;
+			top: 40%;
+			text-align: center;
+			-webkit-transform: translateY(-50%);
+			    -ms-transform: translateY(-50%);
+			        transform: translateY(-50%);
+		}
+		li {
+			position: relative;
+			display: inline-block;
+			padding: 3px;
+		}
+	</style>
 </head>
 <body>
 	<header>
 		欢迎加入到我们的团队
 	</header>
-	<ul class="word_ct">
-		<!--<li>金融</li>
-		<li>科技</li>
-		<li>时尚</li>
-		<li>教育</li>
-		<li>旅行</li>
-		<li>设计</li>
-		<li>创业</li>
-		<li>自然科学</li>
-		<li>音乐</li>
-		<li>历史</li>
-		<li>创业</li>
-		<li>互联网</li>
-		<li>健身</li>
-		<li>美食</li>
-		<li>电影</li>
-		<li>心理学</li>-->
-	</ul>
+	<ul class="word_ct"></ul>
 	<script src="index.js"></script>
+	<script>
+
+		var colors = ['#D8BDC2','#B3CCAF','#A97F81','#8B9CB2','#91AB8E','#A0ACBC','darkred','#74B2E5'] //文字的颜色，随机分配给文字
+		var font_size = ['20','24','28','32','36','40','44','48','52']  //文字的大小，单位px，随机分配给文字
+		var word = ['金融','科技','时尚','教育','旅行','设计','创业','自然科学','音乐','历史','健身','互联网','心理学','电影'] //添加文字
+		var word_ct = document.getElementsByClassName('word_ct')[0] //文字容器
+
+		new WordBox(word_ct,colors,font_size,word)
+	</script>
 </body>
 </html>
