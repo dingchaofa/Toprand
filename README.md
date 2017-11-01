@@ -12,3 +12,13 @@
 
 ### 4. 播放序列帧的几种方式
 1. https://dingchaofa.github.io/Toprand/frameAnimation/
+
+### 5.samsung_v1
+第一版，我觉得第一版格局也不错，故而保留
+https://dingchaofa.github.io/Toprand/samsung_v1/
+
+### 6.samsung_v2
+https://dingchaofa.github.io/Toprand/samsung_v2/
+
+### 7. vivo_fans
+https://dingchaofa.github.io/Toprand/vivo_fans/
