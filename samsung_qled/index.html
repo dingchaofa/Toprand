@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>被套路了，也幸福着</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script>
+      // class
+      ! function(navigator) {
+        var userAgent = navigator.userAgent;
+        documentElement = document.documentElement;
+        if(userAgent.match(/micromessenger\/5/gi)) {
+          documentElement.className += " mobile wx_mobile wx_mobile_5";
+        } else if(userAgent.match(/micromessenger/gi)) {
+          documentElement.className += " mobile wx_mobile";
+        } else if(userAgent.match(/ucbrowser/gi)) {
+          documentElement.className += " mobile uc_mobile";
+        } else if(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase())) {
+          documentElement.className += " mobile";
+        } else if(userAgent.toLowerCase().match(/msie/gi) && (parseFloat(userAgent.toLowerCase().match(/msie ([0-9]{1,}[\.0-9]{0,})/i)[1] || 999) < 9)) {
+          documentElement.className += " pc pc-ie pc-ie8";
+        } else if(userAgent.toLowerCase().match(/msie/gi) || navigator.msPointerEnabled || navigator.pointerEnabled) {
+          documentElement.className += " pc pc-ie";
+        } else {
+          documentElement.className += "pc";
+        }
+      }(navigator);
+      // meta
+      ! function(userAgent) {
+        var screen_w = parseInt(window.screen.width),
+            scale = screen_w / 640;
+        if(/Android (\d+\.\d+)/.test(userAgent)) {
+          var version = parseFloat(RegExp.$1);
+          document.write(version > 2.3 ? '<meta name="viewport" content="width=640, minimum-scale = ' + scale + ", maximum-scale = " + scale + ', target-densitydpi=device-dpi">' : '<meta name="viewport" content="width=640 target-densitydpi=device-dpi">');
+        } else {
+          document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+      }(navigator.userAgent);
+	</script>
+	<script>
+      var _mtac = {"performanceMonitor":1};
+      (function() {
+        var mta = document.createElement("script");
+        mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500487943");
+        mta.setAttribute("cid", "500526920");
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+      })();
+	</script>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--<canvas style="display: none"></canvas>-->
+<audio src="audio/small.mp3" loop></audio>
+<section class="pre_scene">
+	<div class="loading">
+		<img class="transform" src="images/fir_scene/fir_scene_00001.jpg" alt="">
+		<img src="images/fir_scene/tree_small.png" alt="">
+		<span class="load_percent">0%</span>
+		<span class="text_hint">建议锁屏观看<img src="images/fir_scene/look_icon.png" alt=""></span>
+	</div>
+	<div class="select_scene">
+		<img src="images/fir_scene/black_city.jpg" alt="" class="transform">
+		<img src="images/fir_scene/light_city.jpg" alt="" class="transform">
+		<div class='fir_select left_key'></div>
+		<div class='fir_select fir_text'></div>
+		<div class='fir_select right_key'></div>
+	</div>
+</section>
+<img class="music_icon" src="images/music_icon.png">
+<div class="orientation">
+	<img src="images/orientate_hint.png" alt="">
+</div>
+<section class="svg_path">
+	<img class="svg_lantern" src="images/lantern.png" alt="" style="display: none">
+	<svg xmlns="http://www.w3.org/2000/svg">
+		<path class="sec_scene_path svg" d="M445.43,0c17.32,23.56,60,88.61,53,173.19-5.78,69.5-42.59,121.65-55.08,139.34-33.85,47.95-50.35,42.2-69.87,81.3-33,66.19-5.24,121.72-32.42,135.23-21.1,10.49-39.68-22-97.27-22.14-13.49,0-37,.22-60.1,14.23-26.89,16.33-38,42.25-43.5,55.36-29.4,70.76-2.37,163.16,45.08,224.59,30.38,39.33,66.69,62.78,84.37,74.2,57,36.84,81,30.19,119.66,66.56C424.75,975.18,440,1014,447.8,1034.4A278.59,278.59,0,0,1,466,1138" />
+		<path class="thi_scene_path svg" d="M176.1,3.17c2.6-19.65-196.7,47.93-22.6,319.22,28.8,45,64.3,86,84.6,123.66,19.5,36.14,28.8,98.45,27.7,139.1-1.9,70.27,10.8,176.39,75.3,219.43" />
+		<path class="fou_scene_path svg" d="M494,0c7,20.23,37.16,114.33-9.59,192-23.3,38.72-62.15,67.42-73.2,75.59-12.71,9.39-29.44,20.27-72,40.5-70.18,33.35-92.27,35.89-123,51-38,18.68-105.81,62.49-130.28,138-22.37,69-8.55,158.27,52.64,217.49,9.53,9.22,73.05,68.64,164.92,56.41,7.46-1,111.89-16.68,150.07-108.91,35.15-84.91-6.29-185.33-79.5-228-59.2-34.5-120.9-20.58-136.49-16.5-97.21,25.45-134.93,122.25-144,145.49C70,623.73,75.84,677,78.6,699.58c7.94,65,35.36,111.36,59.64,151.5,52.34,86.51,90.81,94,100.77,149.16,9.72,53.79-10.51,103.21-30.27,137.76" />
+		<path class="fif_scene_path svg" d="M440.59,0c12.65,143.28-20.23,203.63-54.5,231.8-16.66,13.7-40.37,25.32-77.41,60.32-31,29.32-52.08,49.3-68.08,82-17,34.76-19.85,70.17-25.5,141-2,24.56-2.69,44.86-3,58.5" />
+		<path class="six_scene_path svg" d="M483.62,0c-4.12,19-12.79,45-33.29,67.67-29.86,33-61.43,33-98.74,49.94-63.28,28.76-124.56,98-134.32,167.62-9.42,67.25,34,100.23,8.32,159.36-14.49,33.3-35.7,63.25-35.7,63.25-10.08,14.23-17.52,22.24-32.5,44.22-13.24,19.43-19.86,29.15-24.62,38.35C101.14,651.6,120,721.93,123.61,735.58c24.11,90.14,99.71,142.7,162,186,1.87,1.3,12,7.75,32.37,20.72,80.23,51.19,96.35,60.29,116.82,80.93a260.52,260.52,0,0,1,39.32,51.2l41,63.57" />
+		<path class="sev_scene_path svg" d="M139.1,0C195.51,51.74,208,94.87,208.32,125.61c.56,64.47-52.78,83.84-66.44,174.3-3.43,22.69-8.24,75.61,13.72,131.69,23.45,59.89,51.17,56.32,73.86,110.26s27.62,135-16.87,191.23c-4.1,5.19-53.32,65.6-114,54C93,786,47.9,776.61,34.1,736.08c-7.81-23-3.71-50.45,12-69,27.25-32.17,80.61-27,112.79-8.67,42.61,24.31,62.34,80,50.7,119.66-11.59,39.54-47.4,39.8-67.5,93-3.74,9.9-13.57,36.89-8,69.12,7.39,43.05,37.81,69.93,57.53,86.87,31.68,27.21,59.78,37.81,167,73.34,43.34,14.36,82,27,115,37.59" />
+		<path class="eig_scene_path svg" d="M155.1,0c2.59,14.94,5.4,34,7.5,56.12a744.35,744.35,0,0,1,2.81,95c-.63,18.54-1.5,42.14-6.2,73.19-3.15,20.82-7,38.43-10.42,51.88a383.15,383.15,0,0,0-5.94,90.17c1.4,26.54,5.07,74.39,29.1,126.82,15.2,33.17,46.79,99,119.63,126.94,12.89,4.94,80,29,144-4.5,5.78-3,29.49-15.92,52.5-45,54.67-69.11,71.23-186.75,21-282-9.33-17.69-53-100.48-141-118.49-10.53-2.15-65.38-13.38-118.49,16.5-7,3.94-28.53,16.78-52.5,48-82.77,107.8-56.8,255.24-49.5,289.49a369.14,369.14,0,0,0,19.5,63,351.35,351.35,0,0,0,52.26,87.22c21.75,26.58,60.16,73.54,123.23,95.77,37.7,13.29,54,7.08,94.34,27a248.08,248.08,0,0,1,60.89,42.74" />
+		<path class="nin_scene_path svg" d="M191.6,0c-9.2,8-22,31.21-34.5,43.12-29,27.76-55.18,41.29-69,58.5-33,41.14-30.4,103.23-19.5,141,9.33,32.29,27.91,57.9,61.6,104.32,7.34,10.11,12.76,17.43,24.26,31.55,23.27,28.59,39.72,43.83,77.74,92.45,25,31.91,54.28,64.89,73,108,33,75.91,23.64,151.61,17.78,199.27C314,851,296.36,865,300.9,926.69c4.15,56.38,22.63,95.58,27.18,104.89,28.32,58,70.66,91.25,93,106.42" />
+		<path class="ten_scene_path svg" d="M130.1,0c49.29,33.92,59.4,62.69,60.19,82C192.5,136.09,122.81,152.6,84.52,243c-5.61,13.25-26.28,65.25-19.66,128.53,9.7,92.68,66.44,99.71,72.34,175.75,5.38,69.28-40.6,77.89-67.11,199.29-10.66,48.83-21.47,98.37-7.5,157.49,5.07,21.45,37.83,147.51,148.49,178.49,9.75,2.73,102.3,27,169.49-36,56.24-52.71,51.79-126.29,51-136.49-.6-7.72-9.45-100.85-93.5-141.13C282,742,218,751,173.46,781.77c-53,36.59-64.3,94.16-73.36,140.31-4.84,24.67-14.61,91.85,16.5,165A271.84,271.84,0,0,0,145.1,1138" />
+		<path class="ele_scene_path svg" d="M470.58-6.38c18,52.75,10.28,82.33-.25,99.63-19.91,32.71-52,25.11-98.75,66.86-13.72,12.26-45.31,40.47-57.73,85.45-13.26,48,2,90.89,12.55,120.47,22,61.63,45.45,62.57,54.58,110.48,1.53,8,11.86,66.57-19.9,115.57-20.56,31.72-40.9,31.9-124.49,78-71,39.17-107.14,59.47-136.49,94.5-19.83,23.66-57.15,68.21-52,128.11C51.62,933,74,976.3,109.1,1000.07c26.22,17.75,40.5,11.71,85.5,40.5,29.4,18.81,41.64,33.12,47.26,40.32A154.34,154.34,0,0,1,269.59,1138" />
+		<path class="twe_scene_path svg" d="M468.58,0c-16.5,30.35-45.82,73-96,99.61-57.51,30.45-89.32,11.62-160.49,43.5-30.82,13.81-88.41,39.6-118.49,99C56.17,316,83.69,397.72,88.68,411.73,109.83,471.11,141,478.3,138.6,518.09,136,561,98.89,565,68.14,627.61c-7.25,14.77-38.79,79-21,144,15.79,57.76,52.84,51.32,85.5,123,9.43,20.7,32.24,78.08,20.64,149.43a254.52,254.52,0,0,1-35.64,94" />
+		<path class="thith_scene_path svg" d="M451.63,0c11.55,24.26,24.06,61,12,97-20,59.71-89.74,64.61-180,122.58-37.23,23.9-129.5,83.14-173.53,189.06-30.47,73.3-44.79,185.68,9,255,25.88,33.34,66,57,66,57a244.32,244.32,0,0,0,81,30c22.06,3.93,83.53,13.95,147-19.5,16.21-8.54,50.63-27.24,75-67.5,31-51.23,25-103.11,22.5-124.49-1.19-10.21-7.15-55.3-39-102-25-36.63-53.67-56.33-61.5-61.5-15.55-10.28-48.2-31.28-96-34.5a187.68,187.68,0,0,0-96,19.5c-4.68,2.33-40.93,20.87-68.87,58.18-60.2,80.38-37,188-33.12,205.81,0,0,19.29,134.51,169.28,234.5l51,39.33c44.61,32.85,49.54,32.61,66.7,47.51,40.2,34.91,59.44,76.44,66.76,94.65a252.46,252.46,0,0,1,18,97.43" />
+	</svg>
+</section>
+<section class="main_scene">
+	<div class='hand_sprite hand_bg'></div>
+	<div class='hand_sprite hand_hint'></div>
+	<div class="left_scene">
+		<div class="ele_scene">
+			<img class="transform" src="images/ele_scene/ele_scene_11.jpg" alt="">
+			<div class="position3">
+				<img src="images/ele_scene/ele_scene_01.png" alt="">
+			</div>
+			<div class='left_sprite ele_scene_00'></div>
+		</div>
+		<div class="sec_scene">
+			<img class="transform" src="images/sec_scene/sec_scene.jpg" alt="">
+			<img style="display: none" src="images/sec_scene/sec_scene_00001.png" alt="">
+			<div class='left_sprite sec_scene_00'></div>
+		</div>
+		<div class="thi_scene">
+			<img src="images/thi_scene/five_scene_01.jpg" alt="" class="transform">
+			<div class='left_sprite thi_scene_00'></div>
+		</div>
+		<div class="fou_scene">
+			<img src="images/fou_scene/fou_scene_01.jpg" alt="" class="transform">
+			<div class='left_sprite fou_scene_00'></div>
+		</div>
+		<div class="fif_scene">
+			<img src="images/fif_scene/fif_scene_01.jpg" alt="" class="transform">
+			<div class='left_sprite fiv_scene_00'></div>
+		</div>
+		<div class="six_scene">
+			<img src="images/six_scene/six_scene_01.jpg" alt="" class="transform">
+			<div class='left_sprite six_scene_00'></div>
+		</div>
+	</div>
+	<div class="right_scene">
+		<div class="eig_scene">
+			<img src="images/eig_scene/eig_scene_01.jpg" alt="" class="transform">
+			<div class='right_sprite eig_scene_00'></div>
+		</div>
+		<div class="sev_scene">
+			<img src="images/sev_scene/sev_scene_01.jpg" alt="" class="transform">
+			<div class='right_sprite sev_scene_00'></div>
+		</div>
+		<div class="nin_scene">
+			<img class="transform" src="images/nin_scene/nin_scene_01.jpg" alt="">
+			<div class="position1">
+				<img src="images/nin_scene/nin_scene_11.png" alt="">
+			</div>
+			<div class='right_sprite nin_scene_00'></div>
+		</div>
+		<div class="ten_scene">
+			<img class="transform" src="images/ten_scene/ten_scene_01.jpg" alt="">
+			<div class="position2">
+				<img src="images/ten_scene/ten_scene_11.png" alt="">
+			</div>
+			<div class='right_sprite ten_scene_00'></div>
+		</div>
+		<div class="twe_scene">
+			<img class="transform" src="images/twe_scene/twe_scene_01.jpg" alt="">
+			<div class='right_sprite twe_scene_00'></div>
+		</div>
+		<div class="thith_scene">
+			<img class="transform" src="images/thith_scene/thith_scene_01.jpg" alt="">
+			<div class='right_sprite thith_scene_00'></div>
+		</div>
+	</div>
+	<div class="fourth_scene">
+		<img class="transform" src="images/fourth_scene/fourth_scene.jpg" alt="">
+		<div class="inner inner1">
+			<img src="images/fourth_scene/inner1.png" alt="">
+		</div>
+		<div class="inner inner2">
+			<img src="images/fourth_scene/inner2.png" alt="">
+		</div>
+		<div class="inner inner3">
+			<img src="images/fourth_scene/inner3.png" alt="">
+		</div>
+		<div class='fourth_sprite fourth_scene_01'></div>
+		<div class='fourth_sprite inner01'></div>
+		<div class='fourth_sprite inner02'></div>
+		<div class='fourth_sprite inner03'></div>
+	</div>
+	<div class="fifth_scene">
+		<img class="transform" src="images/fifth_scene/fifth_scene_01.jpg" alt="">
+		<div class='sprite2 fifth_scene_11'></div>
+		<div class='sprite2 fifth_scene_12'></div>
+		<div class='sprite2 fifth_scene_13'></div>
+		<div class='sprite2 fifth_scene_14'></div>
+		<div class='sprite2 fifth_scene_15'></div>
+		<div class='sprite2 fifth_scene_16'></div>
+		<img class="hand_scale" src="images/fifth_scene/fifth_scene_18.png" alt="">
+		<p>点击收获六重大礼</p>
+		<div class="share">
+			<img src="images/fifth_scene/fifth_scene_19.png" alt="">
+			<a onclick='MtaH5.clickStat("_samsung_qled_daoliu")' href="javascript:;">
+				<img src="images/fifth_scene/fifth_scene_22.png" alt="">
+			</a>
+			<a href="javascript:;">
+				<img src="images/fifth_scene/fifth_scene_21.png" alt="">
+			</a>
+			<a href="https://sale.jd.com/m/act/hbILwmGfkxz.html">
+				<img src="images/fifth_scene/fifth_scene_20.png" alt="">
+			</a>
+			<img class="again_play" src="images/fifth_scene/again_play.png" alt="">
+			<img class="share_icon" src="images/fifth_scene/fifth_scene_17.png" alt="">
+		</div>
+		<div class="mask"></div>
+	</div>
+</section>
+<script src="js/pxloader-all.min.js"></script>
+<script src="js/wx-video-audio-hack.js"></script>
+<script src="js/preloadImg.js"></script>
+<script src="js/main.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="js/wxjdk-xq-1.0.0v.js"></script>
+</body>
+</html>

@@ -1,0 +1,662 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+ul,
+li{
+    list-style: none;
+}
+html,
+body {
+    width: 640px;
+    height: 100%;
+    overflow: hidden;
+    max-height: 1138px;
+    min-height: 1030px;
+    background: #000000;
+}
+html.pc {
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7) translate(-70%,-70%);
+    margin: 0 auto;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+}
+.two_code {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.pc .two_code img {
+    width: 50%;
+}
+.pc .two_code p {
+    margin: 20px;
+}
+section.loading {
+    position: relative;
+    z-index: 99999;
+}
+canvas#canvas {
+    vertical-align: bottom;
+}
+span.process {
+    position: absolute;
+    top: 607px;
+    /* margin: 0 auto; */
+    font-size: 26px;
+    color: white;
+    font-weight: 100;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.play_page {
+    position: absolute;
+    color: red;
+    width: 640px;
+    height: 100%;
+    overflow: hidden;
+    /*opacity: 0.5;*/
+    display: none;
+    z-index: 99999;
+}
+video {
+    display: none;
+    position: relative;
+    z-index: 9999;
+}
+.jump_video {
+    position: absolute;
+    z-index: 99999;
+    top: 80px;
+    right: 25px;
+    width: 54px;
+    height: 54px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    color: rgba(225,225,225,0.67);
+    font-family: Arial;
+    font-size: 16px;
+    line-height: 54px;
+    font-weight: 100;
+    text-align: center;
+    display: none;
+    opacity: 0.7;
+}
+img.play_bg {
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    -webkit-transform: translate(-50%) rotateZ(0deg);
+    -ms-transform: translate(-50%) rotate(0deg);
+    transform: translate(-50%) rotateZ(0deg);
+    -webkit-animation: img_rotate 6s linear infinite;
+    animation: img_rotate 6s linear infinite;
+}
+@-webkit-keyframes img_rotate {
+    from {
+        -webkit-transform: translate(-50%,-50%) rotateZ(0deg);
+        transform: translate(-50%,-50%) rotateZ(0deg);
+    }
+    to {
+        -webkit-transform: translate(-50%,-50%) rotateZ(360deg);
+        transform: translate(-50%,-50%) rotateZ(360deg);
+    }
+}
+@keyframes img_rotate {
+    from {
+        -webkit-transform: translate(-50%,-50%) rotateZ(0deg);
+        transform: translate(-50%,-50%) rotateZ(0deg);
+    }
+    to {
+        -webkit-transform: translate(-50%,-50%) rotateZ(360deg);
+        transform: translate(-50%,-50%) rotateZ(360deg);
+    }
+}
+.img_scale {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,50%);
+    -ms-transform: translate(-50%,50%);
+    transform: translate(-50%,50%);
+}
+.img_scale img {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+}
+.img_scale {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    width: 58px;
+    height: 25px;
+    overflow: hidden;
+}
+@-webkit-keyframes img_scale{
+    from {
+        width: 0px;
+    }
+    to {
+        width: 180px;
+    }
+}
+@keyframes img_scale{
+    from {
+        width: 0px;
+    }
+    to {
+        width: 180px;
+    }
+}
+.imgScale {
+    -webkit-animation: img_scale 1s cubic-bezier(0.22, 0.82, 0.46, 0.74) forwards;
+    animation: img_scale 1s cubic-bezier(0.22, 0.82, 0.46, 0.74) forwards;
+}
+.fadeIn {
+    -webkit-animation: fadeIn .5s ease forwards;
+    animation: fadeIn .5s ease forwards;
+}
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.fadeOut {
+    -webkit-animation: fadeOut 0.5s ease;
+    animation: fadeOut 0.5s ease;
+}
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+.again_page,
+.sign_page {
+    position: relative;
+}
+.footer {
+	width: 640px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    overflow: hidden;
+}
+span.activity_explain_btn {
+    position: absolute;
+    color: white;
+    right: 0;
+    font-size: 20px;
+    font-family: arial;
+    border: 1px solid rgba(225,225,225,0.7);
+    padding: 5px 17px;
+    border-radius: 50px;
+    margin: 20px 24px 0 0;
+    -webkit-box-shadow: inset 0 0 28px 2px rgba(225,225,225,0.4);
+    box-shadow: inset 0 0 28px 2px rgba(225,225,225,0.4);
+    line-height: 24px;
+    opacity: 0.9;
+}
+.again_page img,
+.sign_page img {
+    vertical-align: bottom;
+}
+.again_page img+img {
+    position: absolute;
+    left: 50%;
+    top: 680px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.sign_page img+img{
+    position: absolute;
+    left: 50%;
+    top: 680px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+/*-------------------------------填写信息页面*/
+.info_page {
+    width: 640px;
+    height: 100%;
+    min-height: 1030px;
+    background: url(https://files.vivo.com.cn/static/x20zm/images/info_bg3.jpg) no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.box {
+    width: 366px;
+    height: auto;
+    position: absolute;
+    top: 276px;
+    left: 50%;
+    /*margin-left: -190px;*/
+    -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+            transform: translate(-50%);
+}
+.hint_mes {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+            transform: translate(-50%);
+    -webkit-box-shadow: 0 0 0 1000px rgba(0,0,0,0.7);
+            box-shadow: 0 0 0 1000px rgba(0,0,0,0.7);
+    background: white;
+    font-family: Arial;
+    width: 380px;
+    border-radius: 15px;
+    display: none;
+    z-index: 9999;
+}
+.hint_mes table {
+    color: black;
+    font-size: 22px;
+    font-family: Arial;
+    margin: 0 auto;
+    padding: 18px 0 5px 0;
+    line-height: 60px;
+}
+.hint_name {
+    display: none;
+}
+.hint_photo {
+    display: none;
+}
+.hint_idcard {
+    display: none;
+}
+.hint_city {
+    display: none;
+}
+.hint_reason {
+    display: none;
+}
+.hint_repeat {
+    display: none;
+}
+.hint_confirm {
+    text-align: center;
+    font-size: 28px;
+    color: #5267BB;
+    line-height: 70px;
+    border-top: 1px solid #949494;
+}
+
+.info_page form {
+    text-align: center;
+}
+.info_page input {
+    display: block;
+    width: 366px;
+    height: 50px;
+    border: 1px solid rgba(225,225,225,0.5);
+    background: rgba(72,71,148,0.3);
+    margin: 0 auto;
+    margin-bottom: 14px;
+    border-radius: 50px;
+    color: #93d9fd;
+    font-size: 20px;
+    padding-left: 28px;
+    outline: none;
+    font-weight: 100;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.selectCity {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.selectCity:before {
+    content: "";
+    display: block;
+    height: 0px;
+    width: 0;
+    position: absolute;
+    border: 8px solid transparent;
+    border-top: 10px solid rgba(225,225,225,0.8);
+    left: 150px;
+    top: 212px;
+}
+.selectCity:after {
+    content: "";
+    display: block;
+    height: 0px;
+    width: 0;
+    position: absolute;
+    border: 8px solid transparent;
+    border-top: 10px solid rgba(225,225,225,0.8);
+    right: 11px;
+    top: 212px;
+}
+.select {
+    width: 175px;
+    height: 50px;
+    border: 1px solid rgba(225,225,225,0.5);
+    background: rgba(72,71,148,0.3);
+    margin-bottom: 18px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 22px;
+    outline: none;
+    font-weight: 100;
+    letter-spacing: .3em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input::-webkit-input-placeholder {
+    color:    #ffffff;
+    letter-spacing: .3em;
+}
+textarea::-webkit-input-placeholder {
+    color:    #ffffff;
+    letter-spacing: .3em;
+}
+.info_page textarea {
+    font-size: 20px;
+    font-weight: 100;
+    background: rgba(72,71,148,0.3);
+    margin: 0 auto;
+    display: block;
+    width: 366px;
+    height: 204px;
+    font-family: Arial;
+    padding: 12px 0 0 26px;
+    border-radius: 16px;
+    border: 1px solid rgba(225,225,225,0.5);
+    color: #93d9fd;
+    outline: none;
+    font-weight: 100;
+}
+.info_page input[type="submit"] {
+    font-size: 0;
+    width: 170px;
+    height: 51px;
+    background: url(https://files.vivo.com.cn/static/x20zm/images/submit_icon.png) no-repeat;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    top: 16px;
+    right: 95px;
+}
+.confirm_page form .revise_info {
+    position: relative;
+    left: 2px;
+    top: 110px;
+}
+img.again_video {
+    position: relative;
+    left: 195px;
+    top: 49px;
+}
+.info_page>img {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    top: 175px;
+}
+.info_page form img {
+    position: relative;
+    left: 95px;
+    top: -50px;
+}
+.info_page .filter {
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+}
+.info_page form span {
+    color: white;
+    font-size: 16px;
+    font-family: Arial;
+    display: inline-block;
+    letter-spacing: 4px;
+    font-weight: 100;
+    opacity: 0.6;
+    margin-top: 20px;
+    line-height: 24px;
+}
+/*-------------------------------确认信息页面*/
+.confirm_page {
+    width: 640px;
+    height: 100%;
+    background: url(https://files.vivo.com.cn/static/x20zm/images/info_bg3.jpg) no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.confirm_page form {
+    position: relative;
+    background-image: url(https://files.vivo.com.cn/static/x20zm/images/info_icon.png);
+    background-repeat: no-repeat;
+    background-position: 40px 34px;
+    width: 366px;
+    margin: 0 auto;
+    height: 465px;
+    top: 276px;
+    border: 1px solid rgba(225,225,225,0.5);
+    border-radius: 16px;
+    background-color: rgba(72,71,148,0.3);
+    padding-top: 7px;
+}
+.confirm_page input {
+    display: block;
+    width: 310px;
+    height: 70px;
+    border: none;
+    border-bottom: 1px solid rgba(225,225,225,0.28);
+    background: rgba(225,225,225,0);
+    margin: 0 auto;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 56px;
+    outline: none;
+    font-weight: 100;
+}
+.confirm_page textarea {
+    font-size: 20px;
+    background: rgba(225,225,225,0);
+    margin: 0 auto;
+    display: block;
+    width: 310px;
+    height: 150px;
+    font-family: Arial;
+    padding: 28px 0 0 0px;
+    border: none;
+    color: #fff;
+    outline: none;
+    text-indent: 3em;
+    resize: none;
+}
+.confirm_page input[type="submit"] {
+    font-size: 0;
+    width: 170px;
+    height: 51px;
+    background: url(https://files.vivo.com.cn/static/x20zm/images/enter_icon.png) no-repeat;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    top: 110px;
+    left: -95px;
+}
+.confirm_page img:nth-child(1) {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    top: 175px;
+}
+.confirm_page form .revise_icon {
+    position: relative;
+    left: 195px;
+    top: 58px;
+}
+.mask_area {
+    width: 380px;
+    height: 469px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+            transform: translate(-50%);
+    z-index: 99;
+}
+.mask_cofirm {
+    width: 380px;
+    height: 472px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+            transform: translate(-50%);
+    z-index: 99;
+}
+.mask_photo {
+    width: 380px;
+    height: 60px;
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    z-index: 99;
+    display: none;
+}
+.explain_page {
+    width: 640px;
+    height: 100%;
+    background: url(https://files.vivo.com.cn/static/x20zm/images/explain_bg.jpg) no-repeat;
+    position: relative;
+    z-index: 999999;
+    display: none;
+}
+.explain_page>ul {
+    position: relative;
+    z-index: 99;
+    color: white;
+    width: 470px;
+    height: 690px;
+    /* border: 1px solid; */
+    top: 125px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    padding: 35px;
+    background: rgba(176,175,222,0.3);
+    border-radius: 18px;
+    letter-spacing: 1px;
+}
+.explain_page ul li:last-child {
+    padding-bottom: 35px;
+}
+.explain_page ul h6 {
+    font-size: 20px;
+    margin-top: 35px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+.explain_page ul p {
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 28px;
+}
+.cancel_btn {
+    width: 60px;
+    height: 60px;
+    background: #C3C3C4;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-top: 165px;
+}
+.cancel_btn:before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: #040307;
+    position: relative;
+    top: 29px;
+    z-index: 999;
+    -webkit-transform: rotateZ(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotateZ(45deg);
+    left: 19%;
+    border-radius: 10px;
+}
+.cancel_btn:after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: #040307;
+    position: relative;
+    top: 25px;
+    z-index: 999;
+    -webkit-transform: rotateZ(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotateZ(-45deg);
+    left: 19%;
+    border-radius: 10px;
+}
